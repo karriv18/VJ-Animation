@@ -11,20 +11,18 @@ const spriteHeight = 523;
 let x = 0;
 let y = 0; 
 let frameX = 0; 
-let frameY = 1;
-let gameFrame = 0; 
-const staggerFrame = 5
+let frameY = 0;
+let gameFrame = 0;
+const staggreFrames = 5;
 
 function animate(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    // ctx.fillRect(100, 50, 100, 100)
-    // ctx.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh)
-    ctx.drawImage(playerImage, frameX * spriteWidth, frameY * spriteHeight, 575, 523, 0, 0, spriteWidth, spriteWidth)
-    // di ko to gaano get yung part na to 
-    if (gameFrame % staggerFrame == 0){
-        { frameX < 6 ? frameX++ : frameX = 0 }
-    }
-    gameFrame++
+
+    let position = Math.floor(gameFrame / staggreFrames) % 6; // di ko gets
+    frameX = spriteWidth * position; // di ko gets 
+    ctx.drawImage(playerImage, frameX, frameY, 575, 523, 0, 0, spriteWidth, spriteWidth); 
+
+    gameFrame++;
     requestAnimationFrame(animate);
 }
 
