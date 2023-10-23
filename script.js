@@ -1,3 +1,8 @@
+let playerState = 'idle';
+const dropDown = document.getElementById('animations');
+dropDown.addEventListener('change', function(e){
+    playerState = e.target.value;
+})
 const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d');
 const CANVAS_WIDTH = canvas.width = 600;
@@ -8,6 +13,7 @@ playerImage.src = 'images/shadow_dog.png';
 
 const spriteWidth = 575;
 const spriteHeight = 523;
+
 
 
 let gameFrame = 0;
@@ -73,9 +79,9 @@ animationStates.forEach((state, index) => {
 console.log(animationStates)
 function animate(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    let position = Math.floor(gameFrame / staggreFrames) % spriteAnimations['fall'].loc.length; 
+    let position = Math.floor(gameFrame / staggreFrames) % spriteAnimations[playerState].loc.length; 
     let frameX = spriteWidth * position; 
-    let frameY = spriteAnimations['fall'].loc[position].y
+    let frameY = spriteAnimations[playerState].loc[position].y
     ctx.drawImage(playerImage, frameX, frameY, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight); 
     
 
